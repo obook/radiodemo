@@ -86,7 +86,8 @@
 	
 <script type="text/javascript">
 	
-    $(document).bind('pageinit', function() {
+    $(document).bind('pageinit', function() /* Lorsque la page est initialisée */
+	{
 
         console.log("pageinit");
         
@@ -103,15 +104,15 @@
           radio1.setTimeout("reload()", timeout);
         }
         
-        function reload() {
-  if (has_progress)
-    return;
-  var src = video.src;
-  video.src = "";
-  video.load();
-  video.src = src;
-  video.load();
-}
+		function reload() {
+			if (has_progress)
+				return;
+			var src = video.src;
+			video.src = "";
+			video.load();
+			video.src = src;
+			video.load();
+		}
         
         radio1.addEventListener('stalled', stalled);
         radio1.addEventListener('progress', progress);
@@ -148,7 +149,7 @@
             else
                 document.getElementById('controlaudio3').pause();
              document.getElementById('controlaudio4').pause();
- });
+		});
         
         $('#radio4').click(function() {
             document.getElementById('controlaudio1').pause();
