@@ -1,22 +1,4 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
     <meta charset="UTF-8">
@@ -42,47 +24,51 @@
     </head>
     <body>
     
- <div data-role="page" data-theme="b">
+ <div data-role="page" data-theme="b"> <!-- Début Page principale -->
   
-    <div data-role="header">Mes radios</div>
-	<div role="main" class="ui-content">
+    <div data-role="header" data-position="fixed"> <!-- Entête -->
+		<span id="my_title">Mes radios</span>
+	</div>
+	
+	<div role="main" class="ui-content"> <!-- Corps principal -->
 
     <ul data-role="listview" data-inset="true" data-theme="b" id="listviewRadios">
     
-        <li><a href="#" data-val="controlaudio1" id="radio1">
+        <li><a href="#" data-val="controlaudio1" data-name="Génération 80" id="radio1">
             <img src="img/generationhit80.png">
         <h2>Génération Hit 80</h2>
         <p><audio controls autoplay id="controlaudio1"><source src="http://www.radioking.com/play/generationhit80" type="audio/mpeg"></audio></p></a>
         </li>
         
-        <li><a href="#" data-val="controlaudio2" id="radio2">
+        <li><a href="#" data-val="controlaudio2" data-name="MFM Radio" id="radio2">
             <img src="img/mradio.png">
         <h2>MFM Radio</h2>
         <p><audio controls id="controlaudio2" ><source src="http://mfmwr-010.ice.infomaniak.ch/mfmwr-010.mp3" type="audio/mpeg"></audio></p></a>
         </li>
         
-        <li><a href="#" data-val="controlaudio3" id="radio3">
+        <li><a href="#" data-val="controlaudio3" data-name="Bide et Musique" id="radio3">
             <img src="img/bideetmusique.png">
         <h2>Bide et musique</h2>
         <p><audio controls id="controlaudio3"><source src="http://relay2.bide-et-musique.com:9200/;" type="audio/mpeg"></audio></p></a>
         </li>
 
-        <li><a href="#" data-val="controlaudio4" id="radio4">
+        <li><a href="#" data-val="controlaudio4" data-name="Radio Classique" id="radio4">
             <img src="img/radioclassique.png">
         <h2>Radio classique</h2>
-        <p><audio controls id="controlaudio4"><source src="http://radioclassique.ice.infomaniak.ch:80/radioclassique-high" type="audio/mpeg"></audio></p></a>
+        <p><audio id="controlaudio4"><source src="http://radioclassique.ice.infomaniak.ch:80/radioclassique-high" type="audio/mpeg"></audio></p></a>
         </li>
 		
-        <li><a href="#" data-val="controlaudio5" id="radio5">
+        <li><a href="#" data-val="controlaudio5" data-name="France Info" id="radio5">
             <img src="img/franceinfo.png">
         <h2>France Info</h2>
-        <p><audio controls id="controlaudio5"><source src="http://direct.franceinfo.fr/live/franceinfo-hifi.aac" type="audio/mpeg"></audio></p></a>
+        <p><audio id="controlaudio5"><source src="http://direct.franceinfo.fr/live/franceinfo-hifi.aac" type="audio/mpeg"></audio></p></a>
         </li>		
 
     </ul>
 
     </div>
-	<div data-role="footer" data-position="fixed">
+	
+	<div data-role="footer" data-position="fixed"><!-- Pied de page -->
 	
 	         <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
@@ -90,14 +76,14 @@
             </div>
 	</div>
 	
-<script type="text/javascript">
+<script type="text/javascript"> <!-- Quelques fonctions -->
 
     $(document).bind('pageinit', function() /* Lorsque la page est initialisée */
 	{
 
         console.log("pageinit");
 
-		function jouer(id)
+		function jouer(id,name)
 		{
 			console.log("jouer id="+id);
 			
@@ -108,7 +94,10 @@
 			document.getElementById('controlaudio5').pause();
 			
 			if ( document.getElementById(id).paused )
+			{
 				document.getElementById(id).play();
+				$("#my_title").text('Vous écoutez ' + name);
+			}
 			else
 				document.getElementById(id).pause();           
 		
@@ -117,16 +106,18 @@
         $('#listviewRadios a').click(function()
 		{
 			var id = $(this).data('val');
-            console.log("Vous avez cliqué sur " + id);
-			jouer(id);
+			var name = $(this).data('name');
+            console.log("Vous avez cliqué sur " + id + "de nom" + name);
+			jouer(id, name);
         });
 
     });
 
 </script>
 	
-</div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-    </body>
+</div> <!-- Fin Page principale -->
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
 </html>
