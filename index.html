@@ -49,30 +49,36 @@
 
     <ul data-role="listview" data-inset="true" data-theme="b" id="listviewRadios">
     
-        <li><a href="#" data-val="lecteur radio1" id="radio1">
+        <li><a href="#" data-val="controlaudio1" id="radio1">
             <img src="img/generationhit80.png">
         <h2>Génération Hit 80</h2>
         <p><audio controls autoplay id="controlaudio1"><source src="http://www.radioking.com/play/generationhit80" type="audio/mpeg"></audio></p></a>
         </li>
         
-        <li><a href="#" data-val="lecteur radio2" id="radio2">
+        <li><a href="#" data-val="controlaudio2" id="radio2">
             <img src="img/mradio.png">
         <h2>MFM Radio</h2>
         <p><audio controls id="controlaudio2" ><source src="http://mfmwr-010.ice.infomaniak.ch/mfmwr-010.mp3" type="audio/mpeg"></audio></p></a>
         </li>
         
-        <li><a href="#" data-val="lecteur radio3" id="radio3">
+        <li><a href="#" data-val="controlaudio3" id="radio3">
             <img src="img/bideetmusique.png">
         <h2>Bide et musique</h2>
         <p><audio controls id="controlaudio3"><source src="http://relay2.bide-et-musique.com:9200/;" type="audio/mpeg"></audio></p></a>
         </li>
 
-        <li><a href="#" data-val="lecteur radio4" id="radio4">
+        <li><a href="#" data-val="controlaudio4" id="radio4">
             <img src="img/radioclassique.png">
         <h2>Radio classique</h2>
         <p><audio controls id="controlaudio4"><source src="http://radioclassique.ice.infomaniak.ch:80/radioclassique-high" type="audio/mpeg"></audio></p></a>
         </li>
-        
+		
+        <li><a href="#" data-val="controlaudio5" id="radio5">
+            <img src="img/franceinfo.png">
+        <h2>France Info</h2>
+        <p><audio controls id="controlaudio5"><source src="http://direct.franceinfo.fr/live/franceinfo-hifi.aac" type="audio/mpeg"></audio></p></a>
+        </li>		
+
     </ul>
 
     </div>
@@ -85,82 +91,36 @@
 	</div>
 	
 <script type="text/javascript">
-	
+
     $(document).bind('pageinit', function() /* Lorsque la page est initialisée */
 	{
 
         console.log("pageinit");
-        
-        var has_progress = false;
-        var timeout = 5000;
 
-        function progress() {
-          console.log("pageinit.progress");
-          has_progress = true;
-        }
-
-        function stalled() {
-          console.log("pageinit.stalled");
-          radio1.setTimeout("reload()", timeout);
-        }
-        
-		function reload() {
-			if (has_progress)
-				return;
-			var src = video.src;
-			video.src = "";
-			video.load();
-			video.src = src;
-			video.load();
+		function jouer(id)
+		{
+			console.log("jouer id="+id);
+			
+			document.getElementById('controlaudio1').pause();
+			document.getElementById('controlaudio2').pause();
+			document.getElementById('controlaudio3').pause();
+			document.getElementById('controlaudio4').pause();	
+			document.getElementById('controlaudio5').pause();
+			
+			if ( document.getElementById(id).paused )
+				document.getElementById(id).play();
+			else
+				document.getElementById(id).pause();           
+		
 		}
-        
-        radio1.addEventListener('stalled', stalled);
-        radio1.addEventListener('progress', progress);
-
-        $('#listviewRadios a').click(function() {
-            console.log("Vous avez cliqué sur " + $(this).data('val'));
+	
+        $('#listviewRadios a').click(function()
+		{
+			var id = $(this).data('val');
+            console.log("Vous avez cliqué sur " + id);
+			jouer(id);
         });
 
-        $('#radio1').click(function() {
-            if ( document.getElementById('controlaudio1').paused )
-                document.getElementById('controlaudio1').play();
-            else
-                document.getElementById('controlaudio1').pause();           
-            document.getElementById('controlaudio2').pause();
-            document.getElementById('controlaudio3').pause();
-            document.getElementById('controlaudio4').pause();
-        });
-
-        $('#radio2').click(function() {
-            document.getElementById('controlaudio1').pause();
-            if ( document.getElementById('controlaudio2').paused )
-                document.getElementById('controlaudio2').play();
-            else
-                document.getElementById('controlaudio2').pause();
-            document.getElementById('controlaudio3').pause();
-            document.getElementById('controlaudio4').pause();
-        });
-
-        $('#radio3').click(function() {
-            document.getElementById('controlaudio1').pause();
-            document.getElementById('controlaudio2').pause();
-            if ( document.getElementById('controlaudio3').paused )
-                document.getElementById('controlaudio3').play();
-            else
-                document.getElementById('controlaudio3').pause();
-             document.getElementById('controlaudio4').pause();
-		});
-        
-        $('#radio4').click(function() {
-            document.getElementById('controlaudio1').pause();
-            document.getElementById('controlaudio2').pause();
-            document.getElementById('controlaudio3').pause();
-            if ( document.getElementById('controlaudio4').paused )
-                document.getElementById('controlaudio4').play();
-            else
-                document.getElementById('controlaudio4').pause();
-        });
-        
     });
 
 </script>
