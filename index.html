@@ -60,11 +60,17 @@
         <p><audio id="controlaudio4"><source src="http://radioclassique.ice.infomaniak.ch:80/radioclassique-high" type="audio/mpeg"></audio></p></a>
         </li>
 		
-        <li><a href="#" data-val="controlaudio5" data-name="France Info" id="radio5" data-theme="c">
+        <li><a href="#" data-val="controlaudio5" data-name="France Info" id="radio5">
             <img src="img/franceinfo.png">
         <h2>France Info</h2>
         <p><audio id="controlaudio5"><source src="http://direct.franceinfo.fr/live/franceinfo-hifi.aac" type="audio/mpeg"></audio></p></a>
-        </li>		
+        </li>
+        
+        <li><a href="#" data-val="controlaudio6" data-name="Made in 80" id="radio6">
+            <img src="img/madein80.png">
+        <h2>Made in 80</h2>
+        <p><audio id="controlaudio6"><source src="https://madein80.leswebradios.fr/stream#" type="audio/mpeg"></audio></p></a>
+        </li>	
 
     </ul>
 
@@ -94,6 +100,7 @@
 			document.getElementById('controlaudio3').pause();
 			document.getElementById('controlaudio4').pause();	
 			document.getElementById('controlaudio5').pause();
+			document.getElementById('controlaudio6').pause();
 			
 			if ( document.getElementById(id).paused )
 			{
