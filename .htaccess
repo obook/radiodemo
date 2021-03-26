@@ -1,0 +1,13 @@
+# Forcer le site en https
+
+RewriteEngine On
+RewriteCond %{HTTP:HTTPS} !on
+RewriteRule (.*) https://%{SERVER_NAME}/$1 [QSA,L,R=301]
+
+#RewriteEngine On
+#RewriteCond %{SERVER_PORT} 80
+#RewriteRule ^(.*)$ {SERVER_NAME}/$1 [R,L]
+
+#RewriteEngine on
+#RewriteCond %{HTTPS} !on
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
