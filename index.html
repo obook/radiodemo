@@ -39,17 +39,16 @@
             <li><a href="#" data-val="controlaudio1" data-name="Génération 80" id="radio1">
                 <img src="img/generationhit80.png">
             <h2>Génération Hit 80</h2>
-            <!-- <p><audio autoplay id="controlaudio1"><source src="http://www.radioking.com/play/generationhit80" type="audio/mpeg"></audio></p></a> -->
-            <p><audio autoplay id="controlaudio1"><source src="music/nggyu.mp3" type="audio/mpeg"></audio></p></a>
+            <p><audio autoplay id="controlaudio1"><source src="http://www.radioking.com/play/generationhit80" type="audio/mpeg"></audio></p></a>
             </li>
-            
+                    
             <li><a href="#" data-val="controlaudio2" data-name="MFM Radio" id="radio2">
                 <img src="img/mradio.png">
             <h2>MFM Radio</h2>
             <p><audio id="controlaudio2" ><source src="http://mfmwr-010.ice.infomaniak.ch/mfmwr-010.mp3" type="audio/mpeg"></audio></p></a>
             </li>
             
-            <li><a href="#" data-val="controlaudio3" data-name="Bide et Musique" id="radio3">
+            <li><a href="#" data-val="controlaudio3" data-name="Bide et Musique" id="raio3">
                 <img src="img/bideetmusique.png">
             <h2>Bide et musique</h2>
             <p><audio id="controlaudio3"><source src="https://relay2.bide-et-musique.com:9300/bm.mp3" type="audio/mpeg"></audio></p></a>
@@ -73,6 +72,12 @@
             <p><audio id="controlaudio6"><source src="https://madein80.leswebradios.fr/stream#" type="audio/mpeg"></audio></p></a>
             </li>	
 
+            <li><a href="#" data-val="controlaudio7" data-name="Une surprise" id="radio7">
+                <img src="img/cadeau.png">
+            <h2>Surprise</h2>
+            <p><audio autoplay id="controlaudio7"><source src="music/nggyu.mp3" type="audio/mpeg"></audio></p></a>
+            </li>
+            
         </ul>
 
     </div>
@@ -112,7 +117,7 @@
 		{
 			console.log("jouer id="+id);
 			
-            for(i=1; i<=6; i++)
+            for(i=1; i<=7; i++)
             {
                 currentid = 'controlaudio'+i;
                 currentplayer = document.getElementById(currentid);
