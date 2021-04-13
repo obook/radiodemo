@@ -91,27 +91,84 @@
 	{
 
         console.log("pageinit");
+        
+        var isPlaying = function (service) {
+            return service.currentAudio
+                && service.currentAudio.currentTime > 0
+                && !service.currentAudio.paused
+                && !service.currentAudio.ended
+                && service.currentAudio.readyState > 2;
+        }
+        
+        function togglePause(myAudio) {
+             if (myAudio.paused && myAudio.currentTime > 0 && !myAudio.ended) {
+                 myAudio.play();
+             } else {
+                 myAudio.pause();
+             }
+        }
 
 		function jouer(id,name)
 		{
 			console.log("jouer id="+id);
 			
-			document.getElementById('controlaudio1').pause();
-			document.getElementById('controlaudio2').pause();
-			document.getElementById('controlaudio3').pause();
-			document.getElementById('controlaudio4').pause();	
-			document.getElementById('controlaudio5').pause();
-			document.getElementById('controlaudio6').pause();
+            for(i=1; i<=6; i++)
+            {
+                currentid = 'controlaudio'+i;
+                currentplayer = document.getElementById(currentid);
+                console.log("On arrête le lecteur " + currentid);
+                //currentplayer.pause();
+                //currentplayer.currentTime = 0;
+                $(currentid).trigger("pause");
+                currentplayer.pause();
+            }
+            
+            lecteur = document.getElementById(id);
+
+            console.log("lecteur.paused=" + lecteur.paused );
+            console.log("lecteur.currentTime=" + lecteur.currentTime );
+            
+            if( lecteur.paused || lecteur.currentTime == 0 )
+            {
+                console.log("Le id " + id + " n'est pas en lecture")
+
+                lecteur.pause();
+                lecteur.currentTime = 0;
+                // lecteur.play();
+                $(id).trigger("play");
+/*
+                $(id).trigger("play");
+  */              
+				$("#my_title").text('Vous écoutez ' + name);                
+            }
+            else
+            {
+                console.log("Le id " + id + " est en lecture")
+				//document.getElementById(id).pause();
+                //$(id).trigger("pause");
+                lecteur.pause();
+                //lecteur.currentTime = 0;
+            }
+            
+            lecteur.play();
 			
-			if ( document.getElementById(id).paused )
+            /*            
+            togglePause(lecteur)
+            
+
+			if ( lecteur.paused && lecteur.currentTime > 0 && !lecteur.ended )
 			{
+                console.log("Le id " + id + " n'est pas en lecture")
 				document.getElementById(id).play();
 				$("#my_title").text('Vous écoutez ' + name);
 			}
-			else
+            else
+            {
+                console.log("Le id " + id + " est en lecture")
 				document.getElementById(id).pause();           
-		
-		}
+            }
+            */
+        }
 	
         $('#listviewRadios a').click(function()
 		{
@@ -128,7 +185,7 @@
                 console.log("Error trying addClass on #listviewRadios");
             }
                     
-            console.log("Vous avez cliqué sur " + id + "de nom" + name);
+            console.log("Vous avez cliqué sur " + id + " de nom '" + name+"'");
 			jouer(id, name);
         });
         
