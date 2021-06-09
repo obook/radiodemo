@@ -28,8 +28,8 @@
 <div data-role="page" data-theme="b"> <!-- Début Page principale -->
   
     <div data-role="header" data-position="fixed"> <!-- Entête -->
-		<span id="my_title" class='marquee' data-duration='5000' data-gap='10' data-duplicated='true'>Mes radios</span>
-        <div class="marquee">jQuery marquee is the best <b>marquee</b> plugin in the world</div>
+		<div id="my_title" class='marquee' data-duration='15000' data-gap='0' data-duplicated='false'>Mes radios</div>
+        <!-- <div class="marquee">jQuery marquee is the best <b>marquee</b> plugin in the world</div> -->
 	</div>
 	
 	<div role="main" class="ui-content"> <!-- Corps principal -->
@@ -39,45 +39,38 @@
             <li data-role="list-divider">Liste</li>
 
             <li><a href="#" data-val="controlaudio1" data-name="Génération 80" id="radio1">
-                <img src="img/generationhit80.png">
-            <h2>Génération Hit 80</h2>
-            <p><audio autoplay id="controlaudio1"><source src="https://www.radioking.com/play/generationhit80" type="audio/mpeg"></audio></p></a>
+                <img src="img/generationhit80.png"> <h2>Génération Hit 80</h2>
+                <p><audio autoplay id="controlaudio1"><source src="https://listen.radioking.com/radio/17162/stream/49880" type="audio/mp3"></audio></p></a>
             </li>
                     
             <li><a href="#" data-val="controlaudio2" data-name="MFM Radio" id="radio2">
-                <img src="img/mradio.png">
-            <h2>MFM Radio</h2>
-            <p><audio id="controlaudio2" ><source src="https://mfmwr-010.ice.infomaniak.ch/mfmwr-010.mp3" type="audio/mpeg"></audio></p></a>
+                <img src="img/mradio.png">  <h2>MFM Radio</h2>
+                <p><audio id="controlaudio2"><source src="https://mfmwr-010.ice.infomaniak.ch/mfmwr-010.mp3" type="audio/mp3"></audio></p></a>
             </li>
             
             <li><a href="#" data-val="controlaudio3" data-name="Bide et Musique" id="raio3">
-                <img src="img/bideetmusique.png">
-            <h2>Bide et musique</h2>
-            <p><audio id="controlaudio3"><source src="https://relay2.bide-et-musique.com:9300/bm.mp3" type="audio/mpeg"></audio></p></a>
+                <img src="img/bideetmusique.png">   <h2>Bide et musique</h2>
+                <p><audio id="controlaudio3"><source src="https://relay2.bide-et-musique.com:9300/bm.mp3" type="audio/mpeg"></audio></p></a>
             </li>
 
             <li><a href="#" data-val="controlaudio4" data-name="Radio Classique" id="radio4">
-                <img src="img/radioclassique.png">
-            <h2>Radio classique</h2>
-            <p><audio id="controlaudio4"><source src="https://radioclassique.ice.infomaniak.ch:80/radioclassique-high" type="audio/mpeg"></audio></p></a>
+                <img src="img/radioclassique.png">  <h2>Radio classique</h2>
+                <p><audio id="controlaudio4"><source src="https://radioclassique.ice.infomaniak.ch:80/radioclassique-high" type="audio/mp3"></audio></p></a>
             </li>
     		
             <li><a href="#" data-val="controlaudio5" data-name="France Info" id="radio5">
-                <img src="img/franceinfo.png">
-            <h2>France Info</h2>
-            <p><audio id="controlaudio5"><source src="https://direct.franceinfo.fr/live/franceinfo-hifi.aac" type="audio/mpeg"></audio></p></a>
+                <img src="img/franceinfo.png">  <h2>France Info</h2>
+                <p><audio id="controlaudio5"><source src="https://direct.franceinfo.fr/live/franceinfo-hifi.aac" type="audio/mp3"></audio></p></a>
             </li>
             
             <li><a href="#" data-val="controlaudio6" data-name="Made in 80" id="radio6">
-                <img src="img/madein80.png">
-            <h2>Made in 80</h2>
-            <p><audio id="controlaudio6"><source src="https://madein80.leswebradios.fr/stream#" type="audio/mpeg"></audio></p></a>
+                <img src="img/madein80.png">    <h2>Made in 80</h2>
+                <p><audio id="controlaudio6"><source src="https://madein80.leswebradios.fr/stream#" type="audio/mpeg"></audio></p></a>
             </li>	
 
             <li><a href="#" data-val="controlaudio7" data-name="Une surprise" id="radio7">
-                <img src="img/cadeau.png">
-            <h2>Surprise</h2>
-            <p><audio id="controlaudio7"><source src="music/nggyu.mp3" type="audio/mpeg"></audio></p></a>
+                <img src="img/cadeau.png">  <h2>Surprise</h2>
+                <p><audio id="controlaudio7"><source src="music/nggyu.mp3" type="audio/mpeg"></audio></p></a>
             </li>
             
         </ul>
@@ -88,7 +81,7 @@
 	
 	         <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+                <p class="event received"><button name="buttonClick" onclick="exitFromApp()">Quitter</button></p>
             </div>
 	</div>
 	
@@ -121,32 +114,36 @@
 			
             for(i=1; i<=7; i++)
             {
-                currentid = 'controlaudio'+i;
-                currentplayer = document.getElementById(currentid);
-                console.log("On arrête le lecteur " + currentid);
-                //currentplayer.pause();
-                //currentplayer.currentTime = 0;
-                $(currentid).trigger("pause");
-                currentplayer.pause();
+                if(i !=id)
+                {
+                    currentid = 'controlaudio'+i;
+                    currentplayer = document.getElementById(currentid);
+                    console.log("On arrête le lecteur " + currentid);
+                    //currentplayer.pause();
+                    //currentplayer.currentTime = 0;
+                    $(currentid).trigger("pause");
+                    currentplayer.pause();
+                }
             }
             
+            $("#my_title").text('Vous écoutez ' + name); 
+            $('#my_title').marquee();            
             lecteur = document.getElementById(id);
 
-            console.log("lecteur.paused=" + lecteur.paused );
-            console.log("lecteur.currentTime=" + lecteur.currentTime );
-            
             if( lecteur.paused || lecteur.currentTime == 0 )
             {
                 console.log("Le id " + id + " n'est pas en lecture")
 
                 lecteur.pause();
                 lecteur.currentTime = 0;
-                // lecteur.play();
-                $(id).trigger("play");
-/*
-                $(id).trigger("play");
-  */              
-				$("#my_title").text('Vous écoutez ' + name);                
+                //lecteur.trigger("play");
+                lecteur.play();
+                // 
+
+                //$(id).trigger("play");
+          
+				$("#my_title").text('Vous écoutez ' + name); 
+				$('#my_title').marquee();
             }
             else
             {
@@ -154,11 +151,12 @@
 				//document.getElementById(id).pause();
                 //$(id).trigger("pause");
                 lecteur.pause();
+                //lecteur.trigger("pause");
                 //lecteur.currentTime = 0;
             }
             
-            lecteur.play();
-			
+            /*lecteur.play();
+			*/
             /*            
             togglePause(lecteur)
             
@@ -206,9 +204,9 @@
     });
     
     
-    $('.marquee').marquee({
+    $('#my_title').marquee({
         //duration in milliseconds of the marquee
-        duration: 15000,
+        duration: 100,
         //gap in pixels between the tickers
         gap: 50,
         //time in milliseconds before the marquee will start animating
@@ -218,12 +216,17 @@
         //true or false - should the marquee be duplicated to show an effect of continues flow
         duplicated: true
     });
+    
+    function exitFromApp()
+    {
+        navigator.app.exitApp();
+    }
 
 </script>
 	
 </div> <!-- Fin Page principale -->
 
-<script type="text/javascript" src="cordova.js"></script>
+<!-- <script type="text/javascript" src="cordova.js"></script> -->
 <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
