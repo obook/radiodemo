@@ -40,7 +40,7 @@
 
             <li><a href="#" data-val="controlaudio1" data-name="Génération Hit 80, des nouveautés et de tous les tubes pop rock dance des années 80's 90's 2000's Hits 2017" id="radio1">
                 <img src="img/generationhit80.png"> <h2>Génération Hit 80</h2>
-                <p><audio autoplay id="controlaudio1"><source src="https://listen.radioking.com/radio/17162/stream/49880" type="audio/mp3"></audio></p></a>
+                <p><audio id="controlaudio1"><source src="https://listen.radioking.com/radio/17162/stream/49880" type="audio/mp3"></audio></p></a>
             </li>
                     
             <li><a href="#" data-val="controlaudio2" data-name="M Radio, numéro 1 sur la chanson française" id="radio2">
@@ -80,8 +80,10 @@
 	<div data-role="footer" data-position="fixed"><!-- Pied de page -->
 	
 	         <div id="deviceready" class="blink">
+                 <!--
                 <p class="event listening">Connexion en cours</p>
-                <p class="event received"><button name="buttonClick" onclick="exitFromApp();">Quitter</button></p>
+                <p class="event received"><button name="buttonClick" onclick="exitFromApp();">Quitter</button></p>-->
+                <p><button name="buttonClick" onclick="exitFromApp();">Quitter</button></p>
             </div>
 	</div>
 	
@@ -94,7 +96,7 @@
 
         var id;
 
-        for(i=1; i<=7; i++)
+        for(i=2; i<=7; i++)
         {
             currentid = 'controlaudio'+i;
             currentplayer = document.getElementById(currentid);
