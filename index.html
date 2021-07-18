@@ -38,37 +38,37 @@
         
             <li data-role="list-divider">Liste</li>
 
-            <li data-icon="star"><a href="#" data-val="controlaudio1" data-name="Génération Hit 80, des nouveautés et de tous les tubes pop rock dance des années 80's 90's 2000's Hits 2017" id="radio1">
+            <li data-icon="arrow-r"><a href="#" data-val="controlaudio1" data-name="Génération Hit 80, des nouveautés et de tous les tubes pop rock dance des années 80's 90's 2000's Hits 2017" id="radio1">
                 <img src="img/generationhit80.png"> <h2>Génération Hit 80</h2>
                 <p><audio id="controlaudio1"><source src="https://listen.radioking.com/radio/17162/stream/49880" type="audio/mp3"></audio></p></a>
             </li>
                     
-            <li data-icon="star"><a href="#" data-val="controlaudio2" data-name="M Radio, numéro 1 sur la chanson française" id="radio2">
+            <li data-icon="arrow-r"><a href="#" data-val="controlaudio2" data-name="M Radio, numéro 1 sur la chanson française" id="radio2">
                 <img src="img/mradio.png">  <h2>M Radio</h2>
                 <p><audio id="controlaudio2"><source src="https://mfmwr-010.ice.infomaniak.ch/mfmwr-010.mp3" type="audio/mp3"></audio></p></a>
             </li>
             
-            <li data-icon="star"><a href="#" data-val="controlaudio3" data-name="Bide et Musique, la radio de l'improbable et de l'inouï." id="raio3">
+            <li data-icon="arrow-r"><a href="#" data-val="controlaudio3" data-name="Bide et Musique, la radio de l'improbable et de l'inouï." id="raio3">
                 <img src="img/bideetmusique.png">   <h2>Bide et musique</h2>
                 <p><audio id="controlaudio3"><source src="https://relay2.bide-et-musique.com:9300/bm.mp3" type="audio/mpeg"></audio></p></a>
             </li>
 
-            <li data-icon="star"><a href="#" data-val="controlaudio4" data-name="Radio Classique" id="radio4">
+            <li data-icon="arrow-r"><a href="#" data-val="controlaudio4" data-name="Radio Classique" id="radio4">
                 <img src="img/radioclassique.png">  <h2>Radio classique</h2>
                 <p><audio id="controlaudio4"><source src="https://radioclassique.ice.infomaniak.ch:80/radioclassique-high" type="audio/mp3"></audio></p></a>
             </li>
     		
-            <li data-icon="star"><a href="#" data-val="controlaudio5" data-name="France Info, actualités en temps réel et info en direct" id="radio5">
+            <li data-icon="arrow-r"><a href="#" data-val="controlaudio5" data-name="France Info, actualités en temps réel et info en direct" id="radio5">
                 <img src="img/franceinfo.png">  <h2>France Info</h2>
                 <p><audio id="controlaudio5"><source src="https://direct.franceinfo.fr/live/franceinfo-hifi.aac" type="audio/mp3"></audio></p></a>
             </li>
             
-            <li data-icon="star"><a href="#" data-val="controlaudio6" data-name="Made in 80, la radio officielle des années 80" id="radio6">
+            <li data-icon="arrow-r"><a href="#" data-val="controlaudio6" data-name="Made in 80, la radio officielle des années 80" id="radio6">
                 <img src="img/madein80.png">    <h2>Made in 80</h2>
                 <p><audio id="controlaudio6"><source src="https://madein80.leswebradios.fr/stream#" type="audio/mpeg"></audio></p></a>
             </li>	
 
-            <li data-icon="star"><a href="#" data-val="controlaudio7" data-name="Une surprise ! Projet réalisé par les élèves de la spécialité NSI 2020-2021 de l'ensemble scolaire Albert de Mun à Nogent-sur-Marne. Merci à Alwin, Gabin, Thomas, Oscar, Joseph, Vincent, Célian, Théo, Olivier, Paul, Hugues, Noam, Adeline, Maxime, Yoann et Louis ...
+            <li data-icon="arrow-r"><a href="#" data-val="controlaudio7" data-name="Une surprise ! Projet réalisé par les élèves de la spécialité NSI 2020-2021 de l'ensemble scolaire Albert de Mun à Nogent-sur-Marne. Merci à Alwin, Gabin, Thomas, Oscar, Joseph, Vincent, Célian, Théo, Olivier, Paul, Hugues, Noam, Adeline, Maxime, Yoann et Louis ...
                 " id="radio7">
                 <img src="img/cadeau.png">  <h2>Surprise</h2>
                 <p><audio id="controlaudio7"><source src="music/nggyu.mp3" type="audio/mpeg"></audio></p></a>
@@ -96,7 +96,8 @@
         console.log("pageinit");
 
         var id;
-
+        var lastplayed=null;
+        
         for(i=1; i<=7; i++)
         {
             currentid = 'controlaudio'+i;
@@ -105,15 +106,6 @@
             currentplayer.pause();
             currentplayer.currentTime = 0;
         }
-
-        /* NE fonctionne pas :
-        $('ul>li').each(function() {
-            $(this).buttonMarkup({ icon: "star" });
-        });
-
-        $('ul').listview('refresh');
-        
-        */
        
         var isPlaying = function (service) {
             return service.currentAudio
@@ -134,7 +126,7 @@
 		function jouer(id,name)
 		{
 			console.log("jouer id="+id);
-			
+		
             for(i=1; i<=7; i++)
             {
                 if( 'controlaudio'+i!=id)
@@ -145,7 +137,7 @@
                     currentplayer.pause();
                 }
             }
-            
+
             $("#my_title").text('Vous écoutez ' + name); 
             $('#my_title').marquee();            
             lecteur = document.getElementById(id);
@@ -159,7 +151,15 @@
 
             try
             {
-                $(this).buttonMarkup({ icon: "audio" });
+                $(this).buttonMarkup({icon: "audio"});
+                $(this).buttonMarkup({theme: 'd'});
+                $('ul').listview('refresh');
+                if( lastplayed!=null & lastplayed!=$(this))
+                {
+                    lastplayed.buttonMarkup({ icon: "arrow-r" });
+                    $('ul').listview('refresh');
+                }
+                lastplayed = $(this);
             }
             catch(e)
             {
@@ -168,13 +168,6 @@
                     
             console.log("Vous avez cliqué sur " + id + " de nom '" + name+"'");
 			jouer(id, name);
-        });
-        
-        $('#listviewRadios li' ).click(function()
-        {
-            console.log("#listviewRadios li' click event");
-            // $(this).attr('data-theme','d');
-            $(this).attr("data-theme", "b").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
         });
 
     });
