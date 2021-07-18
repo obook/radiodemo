@@ -38,37 +38,38 @@
         
             <li data-role="list-divider">Liste</li>
 
-            <li><a href="#" data-val="controlaudio1" data-name="Génération Hit 80, des nouveautés et de tous les tubes pop rock dance des années 80's 90's 2000's Hits 2017" id="radio1">
+            <li data-icon="star"><a href="#" data-val="controlaudio1" data-name="Génération Hit 80, des nouveautés et de tous les tubes pop rock dance des années 80's 90's 2000's Hits 2017" id="radio1">
                 <img src="img/generationhit80.png"> <h2>Génération Hit 80</h2>
                 <p><audio id="controlaudio1"><source src="https://listen.radioking.com/radio/17162/stream/49880" type="audio/mp3"></audio></p></a>
             </li>
                     
-            <li><a href="#" data-val="controlaudio2" data-name="M Radio, numéro 1 sur la chanson française" id="radio2">
+            <li data-icon="star"><a href="#" data-val="controlaudio2" data-name="M Radio, numéro 1 sur la chanson française" id="radio2">
                 <img src="img/mradio.png">  <h2>M Radio</h2>
                 <p><audio id="controlaudio2"><source src="https://mfmwr-010.ice.infomaniak.ch/mfmwr-010.mp3" type="audio/mp3"></audio></p></a>
             </li>
             
-            <li><a href="#" data-val="controlaudio3" data-name="Bide et Musique, la radio de l'improbable et de l'inouï." id="raio3">
+            <li data-icon="star"><a href="#" data-val="controlaudio3" data-name="Bide et Musique, la radio de l'improbable et de l'inouï." id="raio3">
                 <img src="img/bideetmusique.png">   <h2>Bide et musique</h2>
                 <p><audio id="controlaudio3"><source src="https://relay2.bide-et-musique.com:9300/bm.mp3" type="audio/mpeg"></audio></p></a>
             </li>
 
-            <li><a href="#" data-val="controlaudio4" data-name="Radio Classique" id="radio4">
+            <li data-icon="star"><a href="#" data-val="controlaudio4" data-name="Radio Classique" id="radio4">
                 <img src="img/radioclassique.png">  <h2>Radio classique</h2>
                 <p><audio id="controlaudio4"><source src="https://radioclassique.ice.infomaniak.ch:80/radioclassique-high" type="audio/mp3"></audio></p></a>
             </li>
     		
-            <li><a href="#" data-val="controlaudio5" data-name="France Info, actualités en temps réel et info en direct" id="radio5">
+            <li data-icon="star"><a href="#" data-val="controlaudio5" data-name="France Info, actualités en temps réel et info en direct" id="radio5">
                 <img src="img/franceinfo.png">  <h2>France Info</h2>
                 <p><audio id="controlaudio5"><source src="https://direct.franceinfo.fr/live/franceinfo-hifi.aac" type="audio/mp3"></audio></p></a>
             </li>
             
-            <li><a href="#" data-val="controlaudio6" data-name="Made in 80, la radio officielle des années 80" id="radio6">
+            <li data-icon="star"><a href="#" data-val="controlaudio6" data-name="Made in 80, la radio officielle des années 80" id="radio6">
                 <img src="img/madein80.png">    <h2>Made in 80</h2>
                 <p><audio id="controlaudio6"><source src="https://madein80.leswebradios.fr/stream#" type="audio/mpeg"></audio></p></a>
             </li>	
 
-            <li><a href="#" data-val="controlaudio7" data-name="Une surprise" id="radio7">
+            <li data-icon="star"><a href="#" data-val="controlaudio7" data-name="Une surprise ! Projet réalisé par les élèves de la spécialité NSI 2020-2021 de l'ensemble scolaire Albert de Mun à Nogent-sur-Marne. Merci à Alwin, Gabin, Thomas, Oscar, Joseph, Vincent, Célian, Théo, Olivier, Paul, Hugues, Noam, Adeline, Maxime, Yoann et Louis ...
+                " id="radio7">
                 <img src="img/cadeau.png">  <h2>Surprise</h2>
                 <p><audio id="controlaudio7"><source src="music/nggyu.mp3" type="audio/mpeg"></audio></p></a>
             </li>
@@ -104,7 +105,16 @@
             currentplayer.pause();
             currentplayer.currentTime = 0;
         }
+
+        /* NE fonctionne pas :
+        $('ul>li').each(function() {
+            $(this).buttonMarkup({ icon: "star" });
+        });
+
+        $('ul').listview('refresh');
         
+        */
+       
         var isPlaying = function (service) {
             return service.currentAudio
                 && service.currentAudio.currentTime > 0
@@ -132,9 +142,6 @@
                     currentid = 'controlaudio'+i;
                     currentplayer = document.getElementById(currentid);
                     console.log("On arrête le lecteur " + currentid);
-                    //currentplayer.pause();
-                    //currentplayer.currentTime = 0;
-                    //$(currentid).trigger("pause");
                     currentplayer.pause();
                 }
             }
@@ -143,50 +150,6 @@
             $('#my_title').marquee();            
             lecteur = document.getElementById(id);
             lecteur.play();
-            /*
-            if( lecteur.paused || lecteur.currentTime == 0 )
-            {
-                console.log("Le id " + id + " n'est pas en lecture")
-
-                lecteur.pause();
-                lecteur.currentTime = 0;
-                //lecteur.trigger("play");
-                lecteur.play();
-                // 
-
-                //$(id).trigger("play");
-          
-				$("#my_title").text('Vous écoutez ' + name); 
-				$('#my_title').marquee();
-            }
-            else
-            {
-                console.log("Le id " + id + " est en lecture")
-				//document.getElementById(id).pause();
-                //$(id).trigger("pause");
-                lecteur.pause();
-                //lecteur.trigger("pause");
-                //lecteur.currentTime = 0;
-            }
-            */
-            /*lecteur.play();
-			*/
-            /*            
-            togglePause(lecteur)
-            
-
-			if ( lecteur.paused && lecteur.currentTime > 0 && !lecteur.ended )
-			{
-                console.log("Le id " + id + " n'est pas en lecture")
-				document.getElementById(id).play();
-				$("#my_title").text('Vous écoutez ' + name);
-			}
-            else
-            {
-                console.log("Le id " + id + " est en lecture")
-				document.getElementById(id).pause();           
-            }
-            */
         }
 	
         $('#listviewRadios a').click(function()
@@ -196,12 +159,11 @@
 
             try
             {
-                // $(this).attr("data-theme", "f").removeClass("ui-btn-up-b").addClass("ui-btn-up-f");
-                $(this).attr("data-theme", "b").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
+                $(this).buttonMarkup({ icon: "audio" });
             }
             catch(e)
             {
-                console.log("Error trying addClass on #listviewRadios");
+                console.log("Error trying buttonMarkup on #listviewRadios");
             }
                     
             console.log("Vous avez cliqué sur " + id + " de nom '" + name+"'");
