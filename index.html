@@ -1,17 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <meta charset="UTF-8">
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
+    <meta charset="utf-8">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -28,8 +18,7 @@
 <div data-role="page" data-theme="b"> <!-- Début Page principale -->
   
     <div data-role="header" data-position="fixed"> <!-- Entête -->
-		<div id="my_title" class='marquee' data-duration='15000' data-gap='0' data-duplicated='false'>Mes radios</div>
-        <!-- <div class="marquee">jQuery marquee is the best <b>marquee</b> plugin in the world</div> -->
+		<div id="my_title" class='marquee' data-duration='15000' data-gap='0' data-duplicated='false'>Mes radios</div> <!-- message déroulant -->
 	</div>
 	
 	<div role="main" class="ui-content"> <!-- Corps principal -->
@@ -89,10 +78,7 @@
 	<div data-role="footer" data-position="fixed"><!-- Pied de page -->
 	
 	         <div id="deviceready" class="blink">
-                 <!--
-                <p class="event listening">Connexion en cours</p>
-                <p class="event received"><button name="buttonClick" onclick="exitFromApp();">Quitter</button></p>-->
-                <p><button name="buttonClick" onclick="exitFromApp();">Quitter</button></p>
+                <p><button name="buttonClick" onclick="exitFromApp();">Stop</button></p>
             </div>
 	</div>
 	
@@ -181,7 +167,6 @@
         });
 
     });
-    
     
     $('#my_title').marquee({
         //duration in milliseconds of the marquee
