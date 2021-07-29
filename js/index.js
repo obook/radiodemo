@@ -23,7 +23,7 @@ document.addEventListener('deviceready', onDeviceReady, false);
 // alert("Here : File index.js"); Sous Android, on passe par là.
 function onDeviceReady() {
     // Cordova is now initialized. Have fun!
-    alert("Device Ready"); // .... Mais pas par là
+    // Cela fonctionne : alert("Device Ready"); // .... Mais pas par là
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     document.getElementById('deviceready').classList.add('ready');
 }
