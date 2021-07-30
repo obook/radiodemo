@@ -26,7 +26,7 @@
 
         <ul data-role="listview" data-inset="true" id="listviewRadios"> <!-- data-theme="b"  -->
         
-            <li data-role="list-divider">Liste</li>
+            <!-- <li data-role="list-divider">Liste</li> -->
 
             <!-- Player 1 -->
             <li data-icon="arrow-r"><a href="#" data-val="controlaudio1" data-name="Génération Hit 80, des nouveautés et de tous les tubes pop rock dance des années 80's 90's 2000's Hits 2017" id="radio1">
@@ -186,6 +186,8 @@
     {
         var players_number = 7;
         
+        $("#my_title").text('Mes radios');
+
         for(i=1; i<=players_number; i++)
         {
             currentid = 'controlaudio'+i;
@@ -198,7 +200,7 @@
     }
 
 </script>
-	
+
 </div> <!-- Fin Page principale -->
 
 <script src="cordova.js"></script>
