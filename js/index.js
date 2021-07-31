@@ -19,11 +19,25 @@
 
 // Wait for the deviceready event before using any of Cordova's device APIs.
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
+
 document.addEventListener('deviceready', onDeviceReady, false);
-// alert("Here : File index.js"); Sous Android, on passe par là.
+
 function onDeviceReady() {
-    // Cordova is now initialized. Have fun!
-    // Cela fonctionne : alert("Device Ready"); // .... Mais pas par là
+    // Cordova is initialized.
+
+    // alert("Application Cordova Prête");
+    
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
+    
     document.getElementById('deviceready').classList.add('ready');
+    
+    /*
+    if (window.plugins && window.plugins.backgroundMode)
+    {
+        // Installation : cordova plugin add cordova-plugin-background-mode
+        // cordova.plugins.backgroundMode.enable(); /* Permet d'arrêter l'application lorsque elle est mise en arrière plan.
+        console.log('Le mode background esr activé');
+    }
+    */
+
 }
